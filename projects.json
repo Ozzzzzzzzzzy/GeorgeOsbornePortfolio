@@ -1,0 +1,21 @@
+﻿[
+    {
+        "title": "Example Game Project 1",
+        "description": "Replace this with your actual project description. Explain what the game/software does and your contributions.",
+        "technologies": [
+            { "name": "Unity", "icon": "🎮" },
+            { "name": "C#", "icon": "💻" },
+            { "name": "Visual Studio", "icon": "🔧" }
+        ]
+    },
+    {
+        "title": "Example Game Project 2", 
+        "description": "Another project description. Highlight the technical aspects and challenges you overcame.",
+        "technologies": [
+            { "name": "Unreal Engine", "icon": "🎮" },
+            { "name": "C++", "icon": "💻" },
+            { "name": "Blueprint", "icon": "🔗" }
+        ]
+    }
+]
+]
