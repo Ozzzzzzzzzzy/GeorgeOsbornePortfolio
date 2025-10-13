@@ -1,10 +1,9 @@
-[
-    { "name": "Unity", "icon": "??" },
-    { "name": "C#", "icon": "??" },
-    { "name": "C++", "icon": "??" },
-    { "name": "Visual Studio", "icon": "???" },
-    { "name": "Git", "icon": "??" },
-    { "name": "JavaScript", "icon": "??" },
-    { "name": "Python", "icon": "??" },
-    { "name": "Blender", "icon": "??" }
-]
+﻿[
+    { "name": "Unity", "icon": "🎮" },
+    { "name": "C#", "icon": "💻" },
+    { "name": "C++", "icon": "🔧" },
+    { "name": "Visual Studio", "icon": "🛠️" },
+    { "name": "Git", "icon": "📚" },
+    { "name": "JavaScript", "icon": "🌐" },
+    { "name": "Python", "icon": "🐍" },
+    { "name": "Blender", "icon": "🎨" }

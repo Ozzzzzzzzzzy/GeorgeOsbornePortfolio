@@ -1,50 +1,87 @@
-﻿// Configuration files for easy updates
-const projects = [
+﻿// Fallback data (lorem ipsum - if you see this, the JSON loading failed)
+const fallbackProjects = [
     {
-        title: "Example Game Project 1",
-        description: "A brief description of your game project. Explain what it does, what makes it interesting, and your role in development.",
+        title: "Lorem Ipsum Project",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. This means the JSON file failed to load!",
         technologies: [
-            { name: "Unity", icon: "🎮" },
-            { name: "C#", icon: "💻" },
-            { name: "Visual Studio", icon: "🔧" }
+            { name: "Lorem", icon: "❌" },
+            { name: "Ipsum", icon: "❌" },
+            { name: "Failed", icon: "❌" }
         ]
     },
     {
-        title: "Example Game Project 2", 
-        description: "Another game project description. Focus on the technical challenges you solved and what you learned.",
+        title: "Dolor Sit Amet", 
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. If you're seeing this, check your projects.json file!",
         technologies: [
-            { name: "Unreal Engine", icon: "🎮" },
-            { name: "C++", icon: "💻" },
-            { name: "Blueprint", icon: "🔗" }
+            { name: "JSON", icon: "❌" },
+            { name: "Loading", icon: "❌" },
+            { name: "Failed", icon: "❌" }
         ]
     }
-    // Add more projects here
 ];
 
 const skills = [
-    { name: "Unity", icon: "🎮" },
-    { name: "C#", icon: "💻" },
-    { name: "C++", icon: "🔧" },
-    { name: "Visual Studio", icon: "🛠️" },
-    { name: "Git", icon: "📚" },
-    { name: "JavaScript", icon: "🌐" }
-    // Add more skills here
+    { name: "C#", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
+    { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+    { name: "HTML/CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    { name: "Unity", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
+    { name: "Unreal Engine", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" },
+    { name: "Visual Studio", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" },
+    { name: "Git/GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" }
 ];
+
+// Variable to store loaded projects
+let projects = fallbackProjects;
+
+// Function to load projects from JSON file
+async function loadProjects() {
+    try {
+        console.log('Attempting to load projects.json...');
+        const response = await fetch('./projects.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const loadedProjects = await response.json();
+        console.log('Successfully loaded projects:', loadedProjects);
+        
+        if (Array.isArray(loadedProjects) && loadedProjects.length > 0) {
+            projects = loadedProjects;
+            console.log('Projects updated successfully');
+        } else {
+            console.warn('Loaded projects is not a valid array, using fallback');
+            projects = fallbackProjects;
+        }
+    } catch (error) {
+        console.error('Failed to load projects.json:', error);
+        console.log('Using fallback lorem ipsum projects');
+        projects = fallbackProjects;
+    }
+}
 
 // Function to render projects
 function renderProjects() {
     const projectsGrid = document.getElementById('projects-grid');
     
+    // Clear existing projects
+    projectsGrid.innerHTML = '';
+    
     projects.forEach(project => {
         const projectCard = document.createElement('div');
         projectCard.className = 'project-card';
         
-        const techTags = project.technologies.map(tech => 
-            `<span class="tech-tag">
-                <span class="tech-icon">${tech.icon}</span>
+        const techTags = project.technologies.map(tech => {
+            const isImageIcon = tech.icon.startsWith('http');
+            const iconContent = isImageIcon 
+                ? `<img src="${tech.icon}" alt="${tech.name}" class="tech-icon" onerror="this.style.display='none'">` 
+                : `<span class="tech-icon">${tech.icon}</span>`;
+                
+            return `<span class="tech-tag">
+                ${iconContent}
                 ${tech.name}
-            </span>`
-        ).join('');
+            </span>`;
+        }).join('');
         
         projectCard.innerHTML = `
             <h3 class="project-title">${project.title}</h3>
@@ -54,9 +91,11 @@ function renderProjects() {
         
         projectsGrid.appendChild(projectCard);
     });
+    
+    console.log(`Rendered ${projects.length} projects`);
 }
 
-// Function to render skills
+// Function to render skills in main section
 function renderSkills() {
     const skillsGrid = document.getElementById('skills-grid');
     
@@ -64,13 +103,42 @@ function renderSkills() {
         const skillItem = document.createElement('div');
         skillItem.className = 'skill-item';
         
+        const isImageIcon = skill.icon.startsWith('http');
+        const iconContent = isImageIcon 
+            ? `<img src="${skill.icon}" alt="${skill.name}" class="skill-icon" onerror="this.style.display='none'">` 
+            : `<div class="skill-icon">${skill.icon}</div>`;
+        
         skillItem.innerHTML = `
-            <div class="skill-icon">${skill.icon}</div>
+            ${iconContent}
             <span class="skill-name">${skill.name}</span>
         `;
         
         skillsGrid.appendChild(skillItem);
     });
+}
+
+// Theme toggle functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    
+    // Check for saved theme preference or default to 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+    
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+    
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
 }
 
 // Smooth scrolling for navigation links
@@ -90,8 +158,16 @@ function initSmoothScroll() {
 }
 
 // Initialize the portfolio
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('Portfolio initializing...');
+    
+    // Load projects first, then render everything
+    await loadProjects();
+    
     renderProjects();
     renderSkills();
+    initThemeToggle();
     initSmoothScroll();
+    
+    console.log('Portfolio initialization complete');
 });
