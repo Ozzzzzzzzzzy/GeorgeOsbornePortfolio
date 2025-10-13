@@ -3,6 +3,7 @@ const fallbackProjects = [
     {
         title: "Lorem Ipsum Project",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. This means the JSON file failed to load!",
+        link: "",
         technologies: [
             { name: "Lorem", icon: "❌" },
             { name: "Ipsum", icon: "❌" },
@@ -12,6 +13,7 @@ const fallbackProjects = [
     {
         title: "Dolor Sit Amet", 
         description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. If you're seeing this, check your projects.json file!",
+        link: "",
         technologies: [
             { name: "JSON", icon: "❌" },
             { name: "Loading", icon: "❌" },
@@ -71,6 +73,15 @@ function renderProjects() {
         const projectCard = document.createElement('div');
         projectCard.className = 'project-card';
         
+        // Add clickable functionality if link exists
+        if (project.link && project.link.trim() !== '') {
+            projectCard.classList.add('clickable');
+            projectCard.setAttribute('data-link', project.link);
+            projectCard.addEventListener('click', () => {
+                window.open(project.link, '_blank');
+            });
+        }
+        
         const techTags = project.technologies.map(tech => {
             const isImageIcon = tech.icon.startsWith('http');
             const iconContent = isImageIcon 
@@ -83,10 +94,16 @@ function renderProjects() {
             </span>`;
         }).join('');
         
+        // Add link indicator if project has a link
+        const linkIndicator = (project.link && project.link.trim() !== '') 
+            ? '<div class="project-link-indicator">🔗 Click to view</div>' 
+            : '';
+        
         projectCard.innerHTML = `
             <h3 class="project-title">${project.title}</h3>
             <p class="project-description">${project.description}</p>
             <div class="project-tech">${techTags}</div>
+            ${linkIndicator}
         `;
         
         projectsGrid.appendChild(projectCard);

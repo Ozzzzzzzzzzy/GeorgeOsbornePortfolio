@@ -2,6 +2,7 @@
     {
         "title": "Nine Lives",
         "description": "A 6-week group project focused on collaboration with different specialists, including artists and designers, to bring a project to life.",
+        "link": "https://github.com/yourusername/nine-lives",
         "technologies": [
             { "name": "Unity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
             { "name": "C#", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
@@ -11,6 +12,7 @@
     {
         "title": "Roguelike Bullet Hell", 
         "description": "A Roguelike, bullet hell game with different enemy and weapon types, with procedural enemy generation and scaling difficulty.",
+        "link": "https://github.com/yourusername/roguelike-bullet-hell",
         "technologies": [
             { "name": "Unity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
             { "name": "C#", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
@@ -20,6 +22,7 @@
     {
         "title": "Mise en Scène", 
         "description": "A short point and click game made for Jamsepticeye 2025, Working with an artist and Music Designer.",
+        "link": "https://ozzy.itch.io/mise-en-scene",
         "technologies": [
             { "name": "Unity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
             { "name": "C#", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
@@ -29,6 +32,7 @@
     {
         "title": "3D Cookie Clicker", 
         "description": "A time-based cookie clicker-style game, transformed into 3D using Unreal Engine 5.",
+        "link": "",
         "technologies": [
             { "name": "Unreal Engine", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" },
             { "name": "Blueprints", "icon": "🔷" }
