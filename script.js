@@ -35,6 +35,10 @@ const skills = [
 // Variable to store loaded projects
 let projects = fallbackProjects;
 
+// Cursor trail variables
+let cursorTrail = [];
+const trailLength = 8;
+
 // Function to load projects from JSON file
 async function loadProjects() {
     try {
@@ -94,16 +98,11 @@ function renderProjects() {
             </span>`;
         }).join('');
         
-        // Add link indicator if project has a link
-        const linkIndicator = (project.link && project.link.trim() !== '') 
-            ? '<div class="project-link-indicator">🔗 Click to view</div>' 
-            : '';
-        
+        // Remove the link indicator - just make the card clickable
         projectCard.innerHTML = `
             <h3 class="project-title">${project.title}</h3>
             <p class="project-description">${project.description}</p>
             <div class="project-tech">${techTags}</div>
-            ${linkIndicator}
         `;
         
         projectsGrid.appendChild(projectCard);
@@ -131,6 +130,47 @@ function renderSkills() {
         `;
         
         skillsGrid.appendChild(skillItem);
+    });
+}
+
+// Cursor trail effect
+function initCursorTrail() {
+    // Create trail elements
+    for (let i = 0; i < trailLength; i++) {
+        const trailDot = document.createElement('div');
+        trailDot.className = 'cursor-trail';
+        trailDot.style.setProperty('--index', i);
+        document.body.appendChild(trailDot);
+        cursorTrail.push(trailDot);
+    }
+    
+    // Track mouse movement
+    document.addEventListener('mousemove', (e) => {
+        cursorTrail.forEach((dot, index) => {
+            setTimeout(() => {
+                dot.style.left = e.clientX + 'px';
+                dot.style.top = e.clientY + 'px';
+            }, index * 20);
+        });
+    });
+}
+
+// Click ripple effect
+function initClickEffect() {
+    document.addEventListener('click', (e) => {
+        const ripple = document.createElement('div');
+        ripple.className = 'click-ripple';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top = e.clientY + 'px';
+        
+        document.body.appendChild(ripple);
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+            if (ripple.parentNode) {
+                ripple.parentNode.removeChild(ripple);
+            }
+        }, 600);
     });
 }
 
@@ -185,6 +225,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderSkills();
     initThemeToggle();
     initSmoothScroll();
+    initCursorTrail();
+    initClickEffect();
     
     console.log('Portfolio initialization complete');
 });

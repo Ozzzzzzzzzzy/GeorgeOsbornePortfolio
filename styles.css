@@ -45,12 +45,48 @@ body {
     color: var(--text-primary);
     background-color: var(--bg-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: none; /* Hide default cursor for custom trail */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Cursor Trail Effect */
+.cursor-trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: calc(1 - var(--index) * 0.12);
+    transform: scale(calc(1 - var(--index) * 0.1));
+    transition: all 0.1s ease;
+    mix-blend-mode: screen;
+}
+
+/* Click Ripple Effect */
+.click-ripple {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out forwards;
+}
+
+@keyframes ripple {
+    to {
+        transform: translate(-50%, -50%) scale(8);
+        opacity: 0;
+    }
 }
 
 /* Header */
@@ -250,7 +286,6 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: 1rem;
 }
 
 .tech-tag {
@@ -270,29 +305,6 @@ h2 {
     width: 16px;
     height: 16px;
     object-fit: contain;
-}
-
-/* Project link indicator */
-.project-link-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 0.5rem;
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    color: var(--accent-color);
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.project-card.clickable:hover .project-link-indicator {
-    background: var(--accent-color);
-    color: white;
-    transform: scale(1.02);
 }
 
 /* Skills Section */
@@ -421,6 +433,15 @@ h2 {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    /* Show default cursor on mobile */
+    body {
+        cursor: default;
+    }
+    
+    .cursor-trail {
+        display: none;
+    }
+    
     .nav {
         flex-direction: column;
         gap: 1rem;
