@@ -21,7 +21,7 @@
     },
     {
         "title": "Mise en Scène", 
-        "description": "A short point and click game made for Jamsepticeye 2025, Working with an artist and Music Designer.",
+        "description": "A short point and click game made for the game jam 'Jamsepticeye 2025', Working with an artist and Music Designer.",
         "link": "https://ozzy.itch.io/mise-en-scene",
         "technologies": [
             { "name": "Unity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
@@ -35,7 +35,7 @@
         "link": "",
         "technologies": [
             { "name": "Unreal Engine", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" },
-            { "name": "Blueprints", "icon": "🔷" }
+            { "name": "Blueprints", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" }
         ]
     }
 ]
