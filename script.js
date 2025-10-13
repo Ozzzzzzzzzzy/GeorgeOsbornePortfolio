@@ -35,9 +35,11 @@ const skills = [
 // Variable to store loaded projects
 let projects = fallbackProjects;
 
-// Cursor trail variables
+// Optimized cursor trail variables
+let mouseX = 0;
+let mouseY = 0;
 let cursorTrail = [];
-const trailLength = 8;
+const trailLength = 6;
 
 // Function to load projects from JSON file
 async function loadProjects() {
@@ -98,7 +100,6 @@ function renderProjects() {
             </span>`;
         }).join('');
         
-        // Remove the link indicator - just make the card clickable
         projectCard.innerHTML = `
             <h3 class="project-title">${project.title}</h3>
             <p class="project-description">${project.description}</p>
@@ -133,35 +134,79 @@ function renderSkills() {
     });
 }
 
-// Cursor trail effect
+// Optimized cursor trail effect
 function initCursorTrail() {
-    // Create trail elements
+    // Create trail positions array
     for (let i = 0; i < trailLength; i++) {
-        const trailDot = document.createElement('div');
-        trailDot.className = 'cursor-trail';
-        trailDot.style.setProperty('--index', i);
-        document.body.appendChild(trailDot);
-        cursorTrail.push(trailDot);
+        cursorTrail.push({ x: 0, y: 0 });
+        
+        // Create trail element
+        const dot = document.createElement('div');
+        dot.className = 'cursor-trail';
+        dot.style.position = 'fixed';
+        dot.style.pointerEvents = 'none';
+        dot.style.zIndex = '9999';
+        dot.style.width = '6px';
+        dot.style.height = '6px';
+        dot.style.borderRadius = '50%';
+        dot.style.backgroundColor = 'var(--accent-color)';
+        dot.style.opacity = (1 - i * 0.15).toString();
+        dot.style.transform = `scale(${1 - i * 0.1})`;
+        dot.style.transition = 'all 0.1s ease';
+        document.body.appendChild(dot);
     }
     
-    // Track mouse movement
+    // Track mouse position (throttled)
+    let ticking = false;
     document.addEventListener('mousemove', (e) => {
-        cursorTrail.forEach((dot, index) => {
-            setTimeout(() => {
-                dot.style.left = e.clientX + 'px';
-                dot.style.top = e.clientY + 'px';
-            }, index * 20);
-        });
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        if (!ticking) {
+            requestAnimationFrame(updateTrail);
+            ticking = true;
+        }
     });
+    
+    // Smooth trail update using requestAnimationFrame
+    function updateTrail() {
+        // Update trail positions
+        for (let i = cursorTrail.length - 1; i > 0; i--) {
+            cursorTrail[i].x += (cursorTrail[i - 1].x - cursorTrail[i].x) * 0.3;
+            cursorTrail[i].y += (cursorTrail[i - 1].y - cursorTrail[i].y) * 0.3;
+        }
+        
+        cursorTrail[0].x = mouseX;
+        cursorTrail[0].y = mouseY;
+        
+        // Update DOM elements
+        const dots = document.querySelectorAll('.cursor-trail');
+        cursorTrail.forEach((pos, i) => {
+            if (dots[i]) {
+                dots[i].style.left = pos.x + 'px';
+                dots[i].style.top = pos.y + 'px';
+            }
+        });
+        
+        ticking = false;
+    }
 }
 
 // Click ripple effect
 function initClickEffect() {
     document.addEventListener('click', (e) => {
         const ripple = document.createElement('div');
-        ripple.className = 'click-ripple';
+        ripple.style.position = 'fixed';
         ripple.style.left = e.clientX + 'px';
         ripple.style.top = e.clientY + 'px';
+        ripple.style.width = '20px';
+        ripple.style.height = '20px';
+        ripple.style.border = '2px solid var(--accent-color)';
+        ripple.style.borderRadius = '50%';
+        ripple.style.pointerEvents = 'none';
+        ripple.style.zIndex = '9998';
+        ripple.style.transform = 'translate(-50%, -50%)';
+        ripple.style.animation = 'ripple 0.6s ease-out forwards';
         
         document.body.appendChild(ripple);
         

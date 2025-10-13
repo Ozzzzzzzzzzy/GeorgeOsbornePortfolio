@@ -45,7 +45,6 @@ body {
     color: var(--text-primary);
     background-color: var(--bg-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: none; /* Hide default cursor for custom trail */
 }
 
 .container {
@@ -54,34 +53,7 @@ body {
     padding: 0 20px;
 }
 
-/* Cursor Trail Effect */
-.cursor-trail {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--accent-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: calc(1 - var(--index) * 0.12);
-    transform: scale(calc(1 - var(--index) * 0.1));
-    transition: all 0.1s ease;
-    mix-blend-mode: screen;
-}
-
 /* Click Ripple Effect */
-.click-ripple {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--accent-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    animation: ripple 0.6s ease-out forwards;
-}
-
 @keyframes ripple {
     to {
         transform: translate(-50%, -50%) scale(8);
@@ -433,15 +405,6 @@ h2 {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    /* Show default cursor on mobile */
-    body {
-        cursor: default;
-    }
-    
-    .cursor-trail {
-        display: none;
-    }
-    
     .nav {
         flex-direction: column;
         gap: 1rem;
