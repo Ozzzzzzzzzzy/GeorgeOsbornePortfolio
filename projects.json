@@ -29,7 +29,7 @@
     },
     {
         "title": "3D Cookie Clicker", 
-        "description": "A time-based cookie clicker-style game, transformed into 3D using Unreal Engine 5.",
+        "description": "My first ever project, a time-based cookie clicker-style game, transformed into 3D using Unreal Engine 5.",
         "link": "https://ozzzzzzy.itch.io/3d-cookie-clicker",
         "technologies": [
             { "name": "Unreal Engine", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" },
