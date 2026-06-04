@@ -21,7 +21,7 @@
     },
     {
         "title": "Mise en Scène", 
-        "description": "A short point and click game made for the game jam 'Jamsepticeye 2025', Working with an artist and Music Designer.",
+        "description": "A short point and click game made in 2 days for the game jam 'Jamsepticeye 2025', Working with an artist and Music Designer.",
         "link": "https://ozzzzzzy.itch.io/mise-en-scne",
         "technologies": [
             { "name": "Unity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
