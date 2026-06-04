@@ -28,12 +28,39 @@
         ]
     },
     {
-        "title": "3D Cookie Clicker", 
+        "title": "3D Cookie Clicker",
         "description": "My first ever project, a time-based cookie clicker-style game, transformed into 3D using Unreal Engine 5.",
         "link": "https://ozzzzzzy.itch.io/3d-cookie-clicker",
         "technologies": [
-            { "name": "Unreal Engine", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" },
-            { "name": "Blueprints", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" }
+            {
+                "name": "Unreal Engine",
+                "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg"
+            },
+            {
+                "name": "Blueprints",
+                "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg"
+            }
+        ]
+    },
+    {
+        "title": "Get Hooked",
+        "description": "A 12 week group project game where the player catches humans whilst playing as a fish, aiming for high scores.",
+        "link": "https://ozzzzzzy.itch.io/get-hooked",
+        "technologies": [
+            {
+                "name": "Unity",
+                "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg"
+            },
+            {
+                "name": "C#",
+                "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg"
+            },
+            {
+                "name": "Git/GitHub",
+                "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+            }
         ]
     }
+
+
 ]
