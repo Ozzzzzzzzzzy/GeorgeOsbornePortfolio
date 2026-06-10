@@ -358,15 +358,6 @@ section {
     position: relative;
 }
 
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 1px;
-    height: 100px;
-    background: linear-gradient(180deg, transparent, var(--border), transparent);
-}
-
 
 .project-card {
     background: linear-gradient(135deg, var(--light) 0%, rgba(217, 70, 166, 0.03) 100%);
