@@ -88,7 +88,7 @@ body {
 }
 
 section {
-    padding: 6rem 0;
+    padding: 4rem 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -144,7 +144,7 @@ h2 {
 }
 
 .project-card {
-    padding: 2rem;
+    padding: 1.5rem;
     background: var(--light);
     border: 2px solid var(--border);
     border-radius: 12px;
