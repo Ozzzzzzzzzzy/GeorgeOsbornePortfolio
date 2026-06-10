@@ -533,3 +533,16 @@ body {
 .skill-item:hover .skill-icon {
     filter: none !important;
 }
+
+.tech-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.tech-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
