@@ -182,7 +182,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     initThemeToggle();
     initSmoothScroll();
     initCustomCursor();
-    initParallax();
 
     console.log('Portfolio initialization complete');
 });
