@@ -128,32 +128,7 @@ function renderSkills() {
     });
 }
 
-// Click ripple effect
-function initClickEffect() {
-    document.addEventListener('click', (e) => {
-        const ripple = document.createElement('div');
-        ripple.style.position = 'fixed';
-        ripple.style.left = e.clientX + 'px';
-        ripple.style.top = e.clientY + 'px';
-        ripple.style.width = '20px';
-        ripple.style.height = '20px';
-        ripple.style.border = '2px solid var(--accent-color)';
-        ripple.style.borderRadius = '50%';
-        ripple.style.pointerEvents = 'none';
-        ripple.style.zIndex = '9998';
-        ripple.style.transform = 'translate(-50%, -50%)';
-        ripple.style.animation = 'ripple 0.6s ease-out forwards';
-        
-        document.body.appendChild(ripple);
-        
-        // Remove ripple after animation
-        setTimeout(() => {
-            if (ripple.parentNode) {
-                ripple.parentNode.removeChild(ripple);
-            }
-        }, 600);
-    });
-}
+// Click ripple effect removed for performance
 
 // Theme toggle functionality
 function initThemeToggle() {
@@ -198,15 +173,73 @@ function initSmoothScroll() {
 // Initialize the portfolio
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('Portfolio initializing...');
-    
+
     // Load projects first, then render everything
     await loadProjects();
-    
+
     renderProjects();
     renderSkills();
     initThemeToggle();
     initSmoothScroll();
-    initClickEffect();
-    
+    initCustomCursor();
+    initParallax();
+
     console.log('Portfolio initialization complete');
 });
+
+// Custom cursor
+function initCustomCursor() {
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor';
+    document.body.appendChild(cursor);
+
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function updateCursor() {
+        const dx = mouseX - cursorX;
+        const dy = mouseY - cursorY;
+
+        cursorX += dx * 0.2;
+        cursorY += dy * 0.2;
+
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+
+        requestAnimationFrame(updateCursor);
+    }
+
+    updateCursor();
+
+    document.addEventListener('mousedown', () => cursor.classList.add('clicking'));
+    document.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
+}
+
+// Parallax effect
+function initParallax() {
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                const heroContent = document.querySelector('.hero-content');
+
+                if (hero && scrolled < hero.offsetHeight) {
+                    heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    heroContent.style.opacity = 1 - (scrolled / hero.offsetHeight) * 0.5;
+                }
+
+                ticking = false;
+            });
+
+            ticking = true;
+        }
+    });
+}
