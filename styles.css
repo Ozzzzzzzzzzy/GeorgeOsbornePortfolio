@@ -537,3 +537,11 @@ body {
     object-fit: contain;
     flex-shrink: 0;
 }
+
+.projects .container {
+    display: block;
+}
+
+.projects h2 {
+    margin-bottom: 2rem;
+}
