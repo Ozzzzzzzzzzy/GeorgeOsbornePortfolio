@@ -181,7 +181,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderSkills();
     initThemeToggle();
     initSmoothScroll();
-    initCustomCursor();
 
     console.log('Portfolio initialization complete');
 });

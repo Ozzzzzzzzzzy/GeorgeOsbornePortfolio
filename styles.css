@@ -24,25 +24,8 @@ body {
     background: var(--bg);
     color: var(--fg);
     line-height: 1.6;
-    cursor: none;
-}
-
-.cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    animation: cursorPulse 4s ease-in-out infinite;
-}
-
-@keyframes cursorPulse {
-    0%, 100% { border-color: var(--accent); box-shadow: 0 0 15px var(--accent); }
-    25% { border-color: var(--accent-2); box-shadow: 0 0 15px var(--accent-2); }
-    50% { border-color: var(--accent-3); box-shadow: 0 0 15px var(--accent-3); }
-    75% { border-color: var(--accent-4); box-shadow: 0 0 15px var(--accent-4); }
+    cursor: auto;
+    font-size: 15px;
 }
 
 .container {
