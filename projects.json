@@ -11,7 +11,7 @@
     },
     {
         "title": "Python Simulation", 
-        "description": "An interactable physics simulation demonstratign water flow and evaporation using Pymonk",
+        "description": "An interactable physics simulation demonstrating water flow and evaporation using Pymonk",
         "link": "https://ozzzzzzy.itch.io/python-physics-demonstration",
         "technologies": [
             { "name": "Python", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" }
